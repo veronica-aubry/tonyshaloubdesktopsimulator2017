@@ -1,0 +1,296 @@
+<!doctype html>
+<meta charset="utf-8">
+<head>
+<script src="https://code.createjs.com/soundjs-0.6.2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.2.2/pixi.min.js"></script>
+
+<script>
+var soundID = "typing";
+var soundID2 ="pop";
+function loadSound(){
+ createjs.Sound.registerSound("image/type.mp3", soundID);
+ createjs.Sound.registerSound("image/pop.mp3", soundID2);
+ }
+
+function playSound1(){
+  createjs.Sound.play(soundID);
+}
+
+function playSound2(){
+  createjs.Sound.play(soundID2);
+}
+
+</script>
+</head>
+
+<body onload="loadSound()">
+  <audio autoplay loop>
+    <source src="/image/its-a-jungle-out-there-slowed-down.wav" type="audio/wav" hidden=true>
+  </audio>
+
+<script>
+
+var Container = PIXI.Container,
+    autoDetectRenderer = PIXI.autoDetectRenderer,
+    loader = PIXI.loader,
+    resources = PIXI.loader.resources,
+    Sprite = PIXI.Sprite;
+
+var stage = new Container(),
+    renderer = autoDetectRenderer(813, 563);
+
+var messageContainer = new Container()
+messageContainer.height = 232;
+messageContainer.width = 800;
+
+
+document.body.appendChild(renderer.view);
+loader
+  .add("image/WHAMAVGATTVSM-desktop.png")
+  .add("image/WHAMAVGATTVSM-email-sprite.png")
+  .add("image/WHAMAVGATTVSM-internet-sprite.png")
+  .add("image/email-bg.png")
+  .add("image/WHAMAVGATTVSM-logo-resized.png")
+  .add("image/email-start-tab.png")
+  .add("image/exit-button.png")
+  .add("image/internet-google-blank-noframe.jpg")
+  .add("image/internet-blank.png")
+  .add("image/reddit-tab.png")
+  .add("image/sprite-tab.png")
+  .add("image/sprite-website.png")
+  .add("image/google-search-tab.png")
+  .add("image/google-search-page.jpg")
+  .add("image/start-button.png")
+  .add("image/reddit-post-page.jpg")
+  .add("image/reddit-todd-comment.jpg")
+  .add("image/_u_MONKeyspaw-message.jpg")
+  .add("image/_u_veryGoodGameDev-message.jpg")
+  .add("image/individual-email.png")
+  .add("image/reddit-message-close.png")
+  .add("image/email1.jpg")
+  .add("image/email2.jpg")
+  .add("image/email3.jpg")
+  .add("image/performance-review-email.jpg")
+  .add("image/corrections-email.jpg")
+  .add("image/clicks-email.jpg")
+  .load(setup);
+
+function setup() {
+
+  stage.addChild(messageContainer)
+
+  var logo = new Sprite(resources["image/WHAMAVGATTVSM-logo-resized.png"].texture);
+  var startbutton = new Sprite(resources["image/start-button.png"].texture);
+  var bg = new Sprite(resources["image/WHAMAVGATTVSM-desktop.png"].texture);
+  var email = new Sprite(resources["image/WHAMAVGATTVSM-email-sprite.png"].texture);
+  var internet = new Sprite(resources["image/WHAMAVGATTVSM-internet-sprite.png"].texture);
+
+  var emailbg = new Sprite(resources["image/email-bg.png"].texture);
+  var email1 = new Sprite(resources["image/email1.jpg"].texture);
+  var email2 = new Sprite(resources["image/email2.jpg"].texture);
+  var email3 = new Sprite(resources["image/email3.jpg"].texture);
+
+  var email1content =  new Sprite(resources["image/performance-review-email.jpg"].texture);
+  var email2content = new Sprite(resources["image/corrections-email.jpg"].texture);
+  var email3content = new Sprite(resources["image/clicks-email.jpg"].texture);
+
+
+  var exitbutton = new Sprite(resources["image/exit-button.png"].texture);
+
+  var internetblank = new Sprite(resources["image/internet-blank.png"].texture);
+  var googlesearchpage = new Sprite(resources["image/internet-google-blank-noframe.jpg"].texture);
+
+  var googlesearchcontent = new Sprite(resources["image/google-search-page.jpg"].texture);
+
+  var googlesearchtab = new Sprite(resources["image/google-search-tab.png"].texture);
+  var reddittab = new Sprite(resources["image/reddit-tab.png"].texture);
+  var spritetab = new Sprite(resources["image/sprite-tab.png"].texture);
+
+  var spritepage = new Sprite(resources["image/sprite-website.png"].texture);
+  var redditpage = new Sprite(resources["image/reddit-post-page.jpg"].texture);
+  var redditcomment = new Sprite(resources["image/reddit-todd-comment.jpg"].texture);
+  var redditmessageclose1 = new Sprite(resources["image/reddit-message-close.png"].texture);
+  var redditmessageclose2 =  new Sprite(resources["image/reddit-message-close.png"].texture);
+  var monkeyspawmessage = new Sprite(resources["image/_u_MONKeyspaw-message.jpg"].texture);
+  var gamedevmessage = new Sprite(resources["image/_u_veryGoodGameDev-message.jpg"].texture);
+
+
+  email3.position.set(201, 100);
+  email2.position.set(201, 160);
+  email1.position.set(201, 221);
+
+  monkeyspawmessage.position.set(560, 300);
+  redditmessageclose1.position.set(750, 305);
+  gamedevmessage.position.set(350, 300);
+  redditmessageclose2.position.set(540, 305);
+
+  googlesearchcontent.position.set(10, 50);
+
+  spritepage.position.set(10, 48);
+  redditpage.position.set(10, 48);
+  redditcomment.position.set(10, 150);
+
+  googlesearchpage.position.set(10, 50);
+  googlesearchtab.position.set(192, 25);
+  spritetab.position.set(30, 25);
+  reddittab.position.set(360, 25);
+
+  email1content.position.set(204, 291);
+  email2content.position.set(204, 291);
+  email3content.position.set(204, 291);
+
+  email1.interactive = true;
+  email1.mousedown = function(){
+    emailbg.addChild(email1content);
+    renderer.render(stage);
+  }
+
+  email2.interactive = true;
+  email2.mousedown = function(){
+    emailbg.addChild(email2content);
+    renderer.render(stage);
+  }
+
+  email3.interactive = true;
+  email3.mousedown = function(){
+    emailbg.addChild(email3content);
+    renderer.render(stage);
+  }
+
+
+  redditmessageclose1.interactive = true;
+  redditmessageclose1.mousedown = function(){
+    messageContainer.removeChild(monkeyspawmessage);
+    messageContainer.removeChild(redditmessageclose1);
+    checkMessage();
+  }
+
+  redditmessageclose2.interactive = true;
+  redditmessageclose2.mousedown = function(){
+    messageContainer.removeChild(gamedevmessage);
+    messageContainer.removeChild(redditmessageclose2);
+    checkMessage();
+  }
+
+  googlesearchtab.interactive = true;
+  googlesearchtab.mousedown = function(mouseData){
+    internetblank.addChild(googlesearchcontent);
+    renderer.render(internetblank);
+    checkMessage();
+  }
+
+  spritetab.interactive = true;
+  spritetab.mousedown = function(mouseData){
+    internetblank.addChild(spritepage)
+    renderer.render(internetblank);
+    checkMessage();
+    }
+
+  reddittab.interactive = true;
+  reddittab.mousedown = function(mouseData){
+    internetblank.addChild(redditpage)
+    renderer.render(internetblank);
+    checkMessage();
+    if(redditpage.children < 1){
+    spritetab.interactive = false;
+    googlesearchtab.interactive = false;
+    exitbutton.interactive = false;
+    playSound1();
+    window.setTimeout(function(){
+      redditpage.addChild(redditcomment);
+      renderer.render(redditpage);
+      renderer.render(internetblank);
+      spritetab.interactive = true;
+      googlesearchtab.interactive = true;
+      exitbutton.interactive = true;
+    }, 2000);
+    window.setTimeout(function(){
+      playSound2();
+      messageContainer.addChild(monkeyspawmessage)
+      messageContainer.addChild(redditmessageclose1)
+      checkMessage();
+    }, 6000);
+    window.setTimeout(function(){
+      playSound2();
+      messageContainer.addChild(gamedevmessage);
+      messageContainer.addChild(redditmessageclose2)
+      checkMessage();
+    }, 10000);
+    }
+  }
+
+  email.interactive = true;
+  email.mousedown = function(mouseData){
+    stage.addChild(emailbg);
+    internet.interactive = false;
+    emailbg.addChild(exitbutton);
+    emailbg.addChild(email1);
+    emailbg.addChild(email2);
+    emailbg.addChild(email3);
+    renderer.render(stage);
+    checkMessage();
+  }
+
+  internet.interactive = true;
+  internet.mousedown = function(mouseData){
+    stage.addChild(internetblank);
+    internetblank.addChild(googlesearchpage);
+    internetblank.addChild(googlesearchtab);
+    internetblank.addChild(spritetab);
+    internetblank.addChild(reddittab);
+    internetblank.addChild(exitbutton);
+    renderer.render(internetblank);
+    checkMessage();
+  }
+
+  exitbutton.position.set(770, 20);
+  exitbutton.interactive = true
+
+  exitbutton.mousedown = function(mouseData){
+    console.log("EXIT CLICK");
+    internet.interactive = true;
+    stage.removeChild(emailbg);
+    stage.removeChild(internetblank);
+    stage.removeChild(exitbutton);
+    renderer.render(stage);
+  }
+
+  email.position.set(580, 80);
+  internet.position.set(580, 200);
+
+  logo.position.set(20, 150);
+  startbutton.position.set(345, 300);
+  stage.addChild(logo);
+  stage.addChild(startbutton);
+  startbutton.interactive = true;
+  startbutton.mousedown = function(){
+      stage.removeChild(logo);
+      stage.removeChild(startbutton);
+      stage.addChild(bg);
+      stage.addChild(email);
+      stage.addChild(internet);
+      renderer.render(stage);
+  };
+
+
+function checkMessage(){
+  if(messageContainer.children.length > 0){
+    console.log("ran");
+    var childlength = stage.children.length;
+    var index = stage.getChildIndex(messageContainer);
+    console.log(stage.getChildIndex(messageContainer))
+    console.log(stage.children);
+    renderer.render(stage);
+    if (index < (childlength - 1)){
+      stage.setChildIndex(messageContainer, (childlength - 1));
+      console.log(stage.getChildIndex(messageContainer))
+      console.log(stage.children.length);
+      renderer.render(stage);
+    }
+  }
+}
+
+  renderer.render(stage);
+}
+</script>
+</body>
